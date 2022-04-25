@@ -7,7 +7,7 @@
 <body class="text-center d-flex flex-column h-100">
     <header th:replace="layout/header :: header"></header>
 
-    <main class="form-signin">
+    <main class="form-signIn">
         <div class="container border rounded flex-md-row mb-4 shadow-sm h-md-250">
             <form action="/auth/user/login" method="post">
                 <h1 class="h3 m-3 fw-normal">로그인</h1>
@@ -27,11 +27,10 @@
                     <label for="password">패스워드</label>
                 </div>
                 <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+                    <input type="checkbox" name="remember-me" id="rememberMe">
+                    <label for="rememberMe" aria-describedby="rememberMeHelp">로그인 유지</label>
                 </div>
-                <button class="w-100 btn btn-lg btn-success" id="btn-login">로그인</button>
+                <button class="w-50 mb-4 btn btn-outline-success" id="btn-login">로그인</button>
             </form>
         </div>
     </main>

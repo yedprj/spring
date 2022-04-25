@@ -1,6 +1,7 @@
 package com.samin.spring.config.auth;
 
 import com.samin.spring.domain.user.User;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,9 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @RequiredArgsConstructor
+@Getter
 public class PrincipalDetail implements UserDetails {
 
-    private final User user;
+    private User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -19,6 +21,11 @@ public class PrincipalDetail implements UserDetails {
         collection.add(() -> user.getRoleKey());
 
         return collection;
+    }
+
+    //일반 사용자
+    public PrincipalDetail(User user) {
+        this.user = user;
     }
 
     // 사용자 패스워드
@@ -48,6 +55,10 @@ public class PrincipalDetail implements UserDetails {
         return user.getId();
     }
 
+    public User getUser() {
+        return user;
+    }
+
     // 계정이 만료되었는지 (true: 만료되지 않음)
     @Override
     public boolean isAccountNonExpired() {
@@ -70,5 +81,9 @@ public class PrincipalDetail implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
